@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -91,11 +92,12 @@ fun SupportHeader() {
             "SUPPORT CENTER",
             modifier = Modifier.constrainAs(titleRef) {
                 start.linkTo(parent.start, margin = 10.dp)
-                top.linkTo(parent.top, margin = 20.dp)
+                top.linkTo(parent.top, margin = 15.dp)
             },
-            style = MaterialTheme.typography.titleSmall,
+            style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
-            color = Color.Green
+            color = Color.Green,
+
         ) // title
 
         AsyncImage(
@@ -112,7 +114,7 @@ fun SupportHeader() {
                     .constrainAs(pfpRef) {
                         end.linkTo(parent.end, margin = 20.dp)
                         top.linkTo(titleRef.top)
-                        bottom.linkTo(titleRef.bottom)
+                        // bottom.linkTo(titleRef.bottom)
                     }
         )// avatar
 
@@ -120,11 +122,11 @@ fun SupportHeader() {
             text = "How can we help?",
             modifier = Modifier.constrainAs(greetingRef) {
                 start.linkTo(parent.start, margin = 10.dp)
-                top.linkTo(titleRef.bottom, margin = 15.dp)
+                top.linkTo(titleRef.bottom, margin = 10.dp)
             },
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 30.sp
+            fontSize = 27.sp
         ) // Greeting
 
         Text(
@@ -135,7 +137,9 @@ fun SupportHeader() {
                 top.linkTo(greetingRef.bottom, margin = 15.dp)
 
             },
-            style = MaterialTheme.typography.labelMedium,
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color.Gray,
+            fontSize = 15.sp
         ) // Greeting Body
     }
 }
@@ -151,7 +155,9 @@ fun ActionGrid(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .height(350.dp)// .width(400.dp)
+            .fillMaxHeight(0.5f)
+            //.height(650.dp)// .width(400.dp)
+
     ) {
         val (grievanceBtn, leaveBtn, policyBtn, itSupportBtn) = createRefs()
         val defaultMargins = 20.dp
@@ -173,7 +179,7 @@ fun ActionGrid(
 
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
-            }
+            }.padding(2.dp)
         )
 
         ActionCard(
@@ -190,7 +196,7 @@ fun ActionGrid(
 
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
-            }
+            }.padding(2.dp)
         )
 
         ActionCard(
@@ -207,7 +213,7 @@ fun ActionGrid(
 
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
-            }
+            }.padding(2.dp)
         )
 
         ActionCard(
@@ -225,7 +231,7 @@ fun ActionGrid(
 
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
-            }
+            }.padding(2.dp)
         )
 
     }

@@ -28,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.tc.support.R
 import com.tc.support.data.Request
 import com.tc.support.data.RequestStatus
@@ -81,7 +82,6 @@ fun RequestItem(
     // Theme setting EDIT HERE for dynamic theme
     var icon : Int
     var color : Color
-    var backgroundColor : Color
     var status : String
 
     val title = when(request.type) {
@@ -100,26 +100,17 @@ fun RequestItem(
             icon = R.drawable.ic_hourglasstop
             status = "In Review"
 
-            backgroundColor = Color(0xFFFCF7E5)
-
-            val iconColor = Color(0xFF8D7600)
-
-
         }
         RequestStatus.APPROVED -> {
             color = Color(0xFF0D7300)
             icon = R.drawable.ic_check
             status = "Approved"
-
-            backgroundColor = Color(0xFFE5FAE3)
         }
 
         RequestStatus.CLOSED -> {
             color = Color(0xFF383838)
             icon = R.drawable.ic_doc
             status = "Closed"
-
-            backgroundColor = Color(0xDFD3D3D3)
         }
     }
     Card(
@@ -173,16 +164,18 @@ fun RequestItem(
             Text(
                 text = request.date.getBetterDate(request.status),
                 style = MaterialTheme.typography.labelMedium,
+                color = Color.Gray,
                 modifier = Modifier.constrainAs(dateRef) {
+                    top.linkTo(titleRef.bottom)
+                    end.linkTo(statusRef.start)
                     start.linkTo(iconRef.end, margin = 15.dp)
-                    bottom.linkTo(iconRef.bottom)
+                    width = Dimension.fillToConstraints
                 }
                 )
 
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    //.size(55.dp)
                     .background(
                         color = color.copy(alpha = 0.1f),
                     )
@@ -235,10 +228,9 @@ fun String.getBetterDate(status: RequestStatus): String {
         RequestStatus.CLOSED -> "Closed"
     }
 
-    val timeFormatter = DateTimeFormatter.ofPattern("h:mm a")
+    val timeFormatter = DateTimeFormatter.ofPattern("h:mma")
     val monthDayFormatter = DateTimeFormatter.ofPattern("MMMM d")
     val fullDateFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy")
-    val zoneId = ZoneId.systemDefault()
 
     return when {
         // Less than 24 hours ago
