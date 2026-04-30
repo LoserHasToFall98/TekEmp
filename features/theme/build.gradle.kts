@@ -1,15 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    //added this for compose library plugin
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "com.tc.theme"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 28

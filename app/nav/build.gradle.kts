@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.tc.nav"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 28
