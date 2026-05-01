@@ -7,11 +7,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.tc.tekemp.ui.theme.TekEmpTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.tc.profile.EditProfileScreen
+import com.tc.profile.ProfileScreen
+import com.tc.profile.ProfileViewModel
+import com.tc.theme.TekEmpTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +24,45 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TekEmpTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MainContent()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun MainContent() {
+    val navController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TekEmpTheme {
-        Greeting("Android")
+    NavHost(
+        navController = navController,
+        startDestination = "profile"
+    ) {
+        composable("profile") {
+            val viewModel: ProfileViewModel = viewModel()
+            Scaffold(
+                modifier = Modifier.fillMaxSize()
+            ) { innerPadding ->
+                ProfileScreen(
+                    modifier = Modifier.padding(innerPadding),
+                    viewModel = viewModel,
+                    onEditClick = {
+                        navController.navigate("edit_profile")
+                    }
+                )
+            }
+        }
+
+        composable("edit_profile") {
+            EditProfileScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                },
+                onNext = { _, _ ->
+
+
+                }
+            )
+        }
     }
 }
