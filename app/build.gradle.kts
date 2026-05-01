@@ -1,4 +1,3 @@
-import io.netty.util.ReferenceCountUtil.release
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -51,6 +50,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(project(":features:theme"))
     implementation(project(":features:profile"))
+    implementation(project(":features:auth"))
 
     implementation("androidx.compose.material3:material3:1.3.0")
     implementation("androidx.compose.material:material-icons-core:1.7.8")

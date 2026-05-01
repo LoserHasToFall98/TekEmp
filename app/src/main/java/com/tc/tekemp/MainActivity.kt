@@ -13,6 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.tc.auth.LoginScreen
 import com.tc.profile.EditProfileScreen
 import com.tc.profile.ProfileScreen
 import com.tc.profile.ProfileViewModel
@@ -36,8 +37,18 @@ fun MainContent() {
 
     NavHost(
         navController = navController,
-        startDestination = "profile"
+        startDestination = "login"
     ) {
+        composable("login") {
+            LoginScreen(
+                onLoginSuccess = {
+                    navController.navigate("profile") {
+                        popUpTo("login") { inclusive = true }
+                    }
+                }
+            )
+        }
+
         composable("profile") {
             val viewModel: ProfileViewModel = viewModel()
             Scaffold(
@@ -59,8 +70,7 @@ fun MainContent() {
                     navController.popBackStack()
                 },
                 onNext = { _, _ ->
-
-
+                    // Handle next
                 }
             )
         }
