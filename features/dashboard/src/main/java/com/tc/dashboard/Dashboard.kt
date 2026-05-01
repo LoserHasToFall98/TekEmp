@@ -44,7 +44,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
         modifier = Modifier
             .verticalScroll(scrollState)
     ) {
-        Spacer(Modifier.height(30.dp))
+        Spacer(Modifier.height(10.dp))
         Card(
             modifier.fillMaxWidth(),
         ) {
@@ -89,7 +89,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                         )
                     }
                 }
-                Spacer(Modifier.height(30.dp))
+                Spacer(Modifier.height(20.dp)) // COME BACK TO SET IT BACK TO 20.dp
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(170.dp), // Space between
                 ) {
@@ -106,13 +106,13 @@ fun Dashboard(modifier: Modifier = Modifier) {
                     Text(
                         text = "Alex.",
                         modifier = Modifier
-                            .padding(vertical = 2.dp, horizontal = 5.dp),
+                            .padding(vertical = 1.dp, horizontal = 5.dp),
                     fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xff2E8B57)
                     )
                 } // END OF ROW
-                Spacer(Modifier.height(15.dp))
+                Spacer(Modifier.height(10.dp))
                 Row(
                     modifier
                         .size(width = 150.dp, height = 40.dp)
@@ -143,7 +143,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                 } // END OF ROW
                 Column(
                     Modifier
-                        .padding(top = 30.dp, bottom = 32.dp)
+                        .padding(top = 20.dp, bottom = 20.dp)
                         .background(
                             Color.White,
                             shape = RoundedCornerShape(25.dp),
@@ -257,16 +257,15 @@ fun Dashboard(modifier: Modifier = Modifier) {
                     } // END OF ROW
                 } // END OF COLUMN
                 Column(
-                    Modifier.padding(bottom = 32.dp).fillMaxWidth()
                 ) {
                     Row(
                         Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(20.dp)
+                        horizontalArrangement = Arrangement.spacedBy(23.dp)
                     ) {
                         Card(
                             modifier = Modifier
-                                .size(width = 140.dp, height = 120.dp)
-                                .padding(vertical = 1.dp, horizontal = 0.dp)
+                                .size(width = 140.dp, height = 100.dp)
+                                .padding(vertical = 0.dp, horizontal = 0.dp)
                                 .background(
                                     color = Color.White,
                                     shape = RoundedCornerShape(25.dp)
@@ -279,7 +278,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                                 Icon(
                                     painter = painterResource(id = com.tc.dashboard.R.drawable.check_icon),
                                     contentDescription = "Check Mark",
-                                    Modifier.padding(8.dp)// Move shape relative to center
+                                    Modifier.padding(11.dp)// Move shape relative to center
                                 )
                                 Text(
                                     text = "12",
@@ -301,7 +300,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                         }
                         Card(
                             Modifier
-                                .size(width = 145.dp, height = 118.dp)
+                                .size(width = 145.dp, height = 100.dp)
                                 .background(
                                     color = Color(0xffFFFFFF00),
                                     shape = RoundedCornerShape(25.dp)
@@ -314,13 +313,13 @@ fun Dashboard(modifier: Modifier = Modifier) {
                             Icon(
                                 painter = painterResource(id = com.tc.dashboard.R.drawable.graph_arrow_icton),
                                 contentDescription = "Statistic Arrow",
-                                Modifier.padding(8.dp)// Move shape relative to center
+                                Modifier.padding(13.dp)// Move shape relative to center
                                 )
                                 Text(
                                     text = "98%",
                                     modifier
-                                        .padding(top = 40.dp)
-                                        .padding(start = 15.dp),
+                                        .padding(top = 37.dp)
+                                        .padding(start = 13.dp),
                                     fontSize = 25.sp,           // Setting Font Size
                                     fontWeight = FontWeight.Bold // Setting Font Weight
                                 )
