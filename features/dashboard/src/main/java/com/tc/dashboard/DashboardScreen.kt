@@ -1,6 +1,5 @@
 package com.tc.dashboard
 
-import android.R.attr.start
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +13,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,7 +23,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,16 +33,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tc.theme.R
-
 
 @Composable
-fun Dashboard(modifier: Modifier = Modifier) {
-    val scrollState = rememberScrollState()
+fun DashboardScreen(
+    modifier: Modifier = Modifier,
+    dashboards : List<DashboardModel>,
+    dashboardData : @Composable () -> Unit,) {
+
+    LazyColumn(
+        Modifier.padding()
+    ) {
+        items(dashboards) { dashboard ->
+            DashboardItem(dashboardModel = dashboard)
+        }
+    }
+}
+
+@Composable
+fun DashboardItem(modifier: Modifier = Modifier, dashboardModel: DashboardModel) {
     Column(
-        //    modifier = Modifier.verticalScroll(scrollState)
         modifier = Modifier
-            .verticalScroll(scrollState)
     ) {
         Spacer(Modifier.height(10.dp))
         Card(
@@ -62,7 +72,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                             .size(width = 70.dp, height = 60.dp)
                             .offset(x = 2.dp, y = (0).dp) // Move shape relative to center
                             .size(60.dp) // Set your desired size here
-                            .background(Color.White, shape = CircleShape)
+                            .background(White, shape = CircleShape)
                     ) {
                         Icon(
                             painter = painterResource(id = com.tc.dashboard.R.drawable.person_icon),
@@ -77,7 +87,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                             .size(width = 50.dp, height = 50.dp)
                             .offset(x = 10.dp, y = (5).dp) // Move shape relative to center
                             .size(60.dp) // Set your desired size here
-                            .background(Color.White, shape = CircleShape)
+                            .background(White, shape = CircleShape)
                     ) {
                         Icon(
                             painter = painterResource(id = com.tc.dashboard.R.drawable.black_bell_icon),
@@ -104,7 +114,8 @@ fun Dashboard(modifier: Modifier = Modifier) {
                 Row(
                 ) {
                     Text(
-                        text = "Alex.",
+                        text = "${dashboardModel.firstName}.",
+//                        text = "Alex",
                         modifier = Modifier
                             .padding(vertical = 1.dp, horizontal = 5.dp),
                     fontSize = 30.sp,
@@ -145,7 +156,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                     Modifier
                         .padding(top = 20.dp, bottom = 20.dp)
                         .background(
-                            Color.White,
+                            White,
                             shape = RoundedCornerShape(25.dp),
                         )
                         .fillMaxSize()
@@ -170,8 +181,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                         }
                         Box(
                             modifier = Modifier
-//                                .size(60.dp)
-                                .offset(x = 50.dp, y = -8.dp) // Move both together
+                                .offset(x = 50.dp, y = -5.dp) // Move both together
                                 .background(Color(0xffFFEBEE), shape = RoundedCornerShape(55.dp)),
                             contentAlignment = Alignment.Center
                         ) {
@@ -182,7 +192,23 @@ fun Dashboard(modifier: Modifier = Modifier) {
                                 fontSize = 14.sp,
                                 modifier = Modifier
                                     .size(width = 120.dp, height = 30.dp)
-                                    .padding(vertical = 3.dp, horizontal = 23.dp)
+                                    .padding(vertical = 8.dp, horizontal = 25.dp)
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .offset(x = 55.dp, y = -5.dp) // Move both together
+                                .background(Color(0xffFFEBEE), shape = RoundedCornerShape(55.dp)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "DUE SOON",
+                                color = Color.Red,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp,
+                                modifier = Modifier
+                                    .size(width = 120.dp, height = 30.dp)
+                                    .padding(vertical = 8.dp, horizontal = 25.dp)
                             )
                         }
                     } // END OF ROW
@@ -247,7 +273,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                         ) {
                             Text(modifier = Modifier.padding(vertical = 8.dp, horizontal = 15.dp),
                                 text = "Start Update          ",
-                                color = Color.White,
+                                color = White,
                                 fontSize = 20.sp,
                             )
                             Icon(
@@ -267,13 +293,13 @@ fun Dashboard(modifier: Modifier = Modifier) {
                                 .size(width = 140.dp, height = 100.dp)
                                 .padding(vertical = 0.dp, horizontal = 0.dp)
                                 .background(
-                                    color = Color.White,
+                                    color = White,
                                     shape = RoundedCornerShape(25.dp)
                                 ) // Curvature amount
                         ) {
                             Box(
                                 Modifier.fillMaxSize()
-                                    .background(Color.White),
+                                    .background(White),
                                 contentAlignment = Alignment.TopStart) {
                                 Icon(
                                     painter = painterResource(id = com.tc.dashboard.R.drawable.check_icon),
@@ -308,7 +334,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
                         ) {
                             Box(
                                 Modifier.fillMaxSize()
-                                    .background(Color.White)
+                                    .background(White)
                                 , contentAlignment = Alignment.TopStart) {
                             Icon(
                                 painter = painterResource(id = com.tc.dashboard.R.drawable.graph_arrow_icton),

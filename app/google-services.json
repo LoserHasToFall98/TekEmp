@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "975815733687",
+    "project_id": "tekemp-e6e08",
+    "storage_bucket": "tekemp-e6e08.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975815733687:android:cc3b7181c78481c8a3b832",
+        "android_client_info": {
+          "package_name": "com.tc.tekemp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS2hgpTEsCf61FGk7H963I9YaSF--qun4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
